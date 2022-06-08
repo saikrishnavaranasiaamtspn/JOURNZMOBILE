@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
 
@@ -10,6 +11,7 @@ import 'package:velocity_x/velocity_x.dart';
 class MobileHomePageCenterPaneArticleCard extends StatefulWidget {
   final List<HiveArticleData> listOfArticles;
   final int index;
+
   const MobileHomePageCenterPaneArticleCard(
       {Key? key, required this.index, required this.listOfArticles})
       : super(key: key);
@@ -19,381 +21,195 @@ class MobileHomePageCenterPaneArticleCard extends StatefulWidget {
       _HomePageCenterPaneArticleCardState();
 }
 
-class _HomePageCenterPaneArticleCardState
-    extends State<MobileHomePageCenterPaneArticleCard> {
+class _HomePageCenterPaneArticleCardState extends State<MobileHomePageCenterPaneArticleCard> {
   @override
   Widget build(BuildContext context) {
-    return
-      Container(
-
-        padding:EdgeInsets.symmetric(vertical: 0,horizontal: 5),
-        decoration: BoxDecoration(
-
-            borderRadius: BorderRadius.circular(context.screenHeight * 0.02)),
-        height: context.screenHeight * 0.20,
-        //width: context.screenWidth,
-        child: Container(
-
-          child: Row(
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-            children: [
-              // widget.index.isEven
-              //     ?
-              // /* Column(
-              //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //       crossAxisAlignment: CrossAxisAlignment.center,
-              //       children: [
-              //         Row(
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           crossAxisAlignment: CrossAxisAlignment.center,
-              //           children: [
-              //             Image.asset(
-              //               'assets/images/Diamond2.png',
-              //               color: Colors.blue.shade400,
-              //             )
-              //                 .box
-              //                 .width(context.screenWidth * 0.02)
-              //                 .height(context.screenHeight * 0.035)
-              //                 .make(),
-              //             Text(widget.listOfArticles[widget.index].noOfViews
-              //                 .toString()),
-              //           ],
-              //         ).box.width(context.screenWidth * 0.045).make(),
-              //         Row(
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           crossAxisAlignment: CrossAxisAlignment.center,
-              //           children: [
-              //             Image.asset('assets/images/Chat2.png',
-              //                     color: Colors.blue.shade400)
-              //                 .box
-              //                 .width(context.screenWidth * 0.02)
-              //                 .height(context.screenHeight * 0.035)
-              //                 .make(),
-              //             Text(widget.listOfArticles[widget.index].noOfComments
-              //                 .toString()),
-              //           ],
-              //         ).box.width(context.screenWidth * 0.045).make(),
-              //         BlocBuilder<CheckuserloginedCubit, CheckuserloginedState>(
-              //           builder: (context, loginState) {
-              //             return Row(
-              //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //               crossAxisAlignment: CrossAxisAlignment.center,
-              //               children: [
-              //                 loginState.isLoggined!
-              //                     ? widget.listOfArticles[widget.index]
-              //                             .articleLike
-              //                             .contains(FirebaseAuth
-              //                                 .instance.currentUser!.uid)
-              //                         ? Image.asset('assets/images/Okay2.png',
-              //                                 color: Colors.blue.shade400)
-              //                             .box
-              //                             .width(context.screenWidth * 0.02)
-              //                             .height(context.screenHeight * 0.035)
-              //                             .make()
-              //                         : Image.asset(
-              //                                 'assets/images/Okayoutline1.png',
-              //                                 color: Colors.blue.shade400)
-              //                             .box
-              //                             .width(context.screenWidth * 0.02)
-              //                             .height(context.screenHeight * 0.035)
-              //                             .make()
-              //                     : Image.asset('assets/images/Okayoutline1.png',
-              //                             color: Colors.blue.shade400)
-              //                         .box
-              //                         .width(context.screenWidth * 0.02)
-              //                         .height(context.screenHeight * 0.035)
-              //                         .make(),
-              //                 Text(widget.listOfArticles[widget.index].noOflikes
-              //                     .toString()),
-              //                 //  Text('Likes')
-              //               ],
-              //             ).box.width(context.screenWidth * 0.045).make();
-              //           },
-              //         ),
-              //         Row(
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           crossAxisAlignment: CrossAxisAlignment.center,
-              //           children: [
-              //             Image.asset('assets/images/Sharefilled2.png',
-              //                     color: Colors.blue.shade400)
-              //                 .box
-              //                 .width(context.screenWidth * 0.02)
-              //                 .height(context.screenHeight * 0.035)
-              //                 .make(),
-              //           ],
-              //         ).box.width(context.screenWidth * 0.045).make()
-              //       ],
-              //     ).box.width(context.screenWidth * 0.045).make()*/
-              // postsocial(widget.listOfArticles,widget.index)
-              //     : Container(),
-              // widget.index.isEven
-              //     ? VerticalDivider(
-              //     thickness: context.screenSize.aspectRatio,
-              //     color: Colors.black12)
-              //     : Container(),
-              widget.listOfArticles[widget.index].articlePhotoUrl != 'WithoutImage'
-                  ? widget.index.isEven
-                  ?
-              /*Image.network(
-                            widget.listOfArticles[widget.index].articlePhotoUrl,
-                            fit: BoxFit.fill)
-                        .box
-                        .height(context.screenHeight * 0.2)
-                        .width(context.screenWidth * 0.1)
-                        .make()*/
-              postimage(widget.listOfArticles[widget.index].articlePhotoUrl)
-                  : Container()
-                  : Container(),
-              // SizedBox(width: context.screenWidth * 0.005),
-              /*Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-
-                    widget.listOfArticles[widget.index].articleTitle!,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: context.screenHeight * 0.024)),
-
-                Html(
-                        data: widget
-                                .listOfArticles[widget.index].articleDescription
-                                .split(RegExp("<(“[^”]*”|'[^’]*’|[^'”>])*>"))
-                                .join("")
-                                .substring(
-                                    0,
-                                    widget.listOfArticles[widget.index]
-                                                .articlePhotoUrl !=
-                                            'WithoutImage'
-                                        ? 150
-                                        : 210) +
-                            "...")
-                    .box
-                    .height(context.screenHeight * 0.1)
-                    .width(context.screenWidth * 0.365)
-                    .make(),
-              ],
-            )
-                .box
-                .width(widget.listOfArticles[widget.index].articlePhotoUrl !=
-                        'WithoutImage'
-                    ? context.screenWidth * 0.275
-                    : context.screenWidth * 0.365)
-                .make(),*/
-              postcontent(widget.listOfArticles,widget.index),
-              widget.listOfArticles[widget.index].articlePhotoUrl != 'WithoutImage'
-                  ? widget.index.isOdd
-                  ?
-              /*Image.network(
-                            widget.listOfArticles[widget.index].articlePhotoUrl,
-                            fit: BoxFit.fill)
-                        .box
-                        .height(context.screenHeight * 0.2)
-                        .width(context.screenWidth * 0.1)
-                        .make()*/
-              postimage(widget.listOfArticles[widget.index].articlePhotoUrl)
-                  : Container()
-                  : Container(),
-            // SizedBox(width: context.screenWidth * 0.005),
-
-              // widget.index.isOdd
-              //     ?
-              //
-              // postsocial(widget.listOfArticles,widget.index)
-              //     : Container(),
-            ],
-          ),
-        ),
-      );
-
-
-
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
+      decoration: BoxDecoration(
+        color: Colors.grey,
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+              color: Color.fromRGBO(0, 0, 0, 0.25),
+              offset: Offset(0, 4),
+              blurRadius: 4)
+        ],
+        gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color.fromRGBO(243, 243, 243, 1.0),
+              Color.fromRGBO(255, 255, 255, 1)
+            ]),
+      ),
+      height: context.screenHeight * 0.19,
+      //width: context.screenWidth,
+      child: Container(
+        child: postcontent(widget.listOfArticles, widget.index),
+      ),
+    );
   }
 }
 
 
-Widget postsocial(List<HiveArticleData> listOfArticles ,int index ) {
-  var width = 22.0;
+
+Widget postcontent(List<HiveArticleData> listOfArticles, int index) {
   return Builder(
-      builder: (context){
-
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-
-                Image.asset(
-                  'assets/images/Diamondcare.png',
-                  color: Colors.blue.shade400,
-                )
-                    .box
-                    .
-                width(width)
-                    .height(width)
-                    .make(),
-                Text(listOfArticles[index].noOfViews
-                    .toString()),
-              ],
-            ).box.width(55).make(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/images/Chat2.png',
-                  color: Colors.blue.shade400,
-                )
-                    .box
-                    .width(width)
-                    .height(width)
-                    .make(),
-                Text(listOfArticles[index].noOfComments
-                    .toString()),
-              ],
-            ).box.width(55).make(),
-            BlocBuilder<CheckuserloginedCubit, CheckuserloginedState>(
-              builder: (context, loginState) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    loginState.isLoggined!
-                        ? listOfArticles[index]
-                        .articleLike
-                        .contains(FirebaseAuth
-                        .instance.currentUser!.uid)
-                        ? Image.asset(
-                      'assets/images/Okay2.png',
-                      color: Colors.blue.shade400,
-                    )
-                        .box
-                        .width(width)
-                        .height(width)
-                        .make()
-                        : Image.asset(
-                        'assets/images/Okayoutline1.png',
-                        color: Colors.blue.shade400)
-                        .box
-                        .width(width)
-                        .height(width)
-                        .make()
-                        : Image.asset('assets/images/Okayoutline1.png',
-                        color: Colors.blue.shade400)
-                        .box
-                        .width(width)
-                        .height(width)
-                        .make(),
-                    Text(listOfArticles[index].noOflikes
-                        .toString()),
-                  ],
-                ).box.width(55).make();
-              },
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset('assets/images/Sharefilled2.png',
-                    color: Colors.blue.shade400)
-                    .box
-                    .width(width)
-                    .height(width)
-                    .make(),
-              ],
-            ).box.width(55).make()
-          ],
-        ).box.width(60).make();
-      }
-  );
-
-
-
-}
-
-Widget postcontent(List<HiveArticleData> listOfArticles ,int index ){
-
-  return Builder(
-    builder: (context){
-      return
-
-        Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-
-                listOfArticles[index].articleTitle!,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: context.screenHeight * 0.024)),
-
-            Text(
-
-                  listOfArticles[index].articleDescription
-                      .split(RegExp("<(“[^”]*”|'[^’]*’|[^'”>])*>"))
-                      .join("")
-                      .substring(
-                      0,
-                      listOfArticles[index]
-                          .articlePhotoUrl !=
-                          'WithoutImage'
-                          ? 200
-                          : 250) ,
-
+    builder: (context) {
+      return Column(
+        //mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(listOfArticles[index].articleTitle!,
+              maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              maxLines:listOfArticles[index]
-                  .articlePhotoUrl !=
-                  'WithoutImage'
-                  ? 3
-                  : 4,
-
+              style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: context.screenHeight * 0.024)),
+          SizedBox(
+            height: (context.screenHeight * 0.19) * 0.03,
+          ),
+          Text(
+            listOfArticles[index]
+                .articleDescription
+                .split(RegExp("<(“[^”]*”|'[^’]*’|[^'”>])*>"))
+                .join("")
+                .substring(0, 250),
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: context.screenHeight * 0.02),
+            maxLines: 2,
+          ),
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    socialcontainers(BlocBuilder<CheckuserloginedCubit,
+                        CheckuserloginedState>(
+                      builder: (context, loginState) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            loginState.isLoggined!
+                                ? listOfArticles[index].articleLike.contains(
+                                        FirebaseAuth.instance.currentUser!.uid)
+                                    ? Image.asset(
+                                        'assets/images/Okay2.png',
+                                      )
+                                        .box
+                                        .width(
+                                            (context.screenWidth - 40) * 0.05)
+                                        .make()
+                                    : Image.asset(
+                                        'assets/images/Okayoutline1.png',
+                                      )
+                                        .box
+                                        .width(
+                                            (context.screenWidth - 40) * 0.05)
+                                        .make()
+                                : Image.asset(
+                                    'assets/images/Okayoutline1.png',
+                                  )
+                                    .box
+                                    .width((context.screenWidth - 40) * 0.05)
+                                    .make(),
+                            Container(
+                              width: ((context.screenWidth - 45) * 0.19) * 0.3,
+                              child: Text(
+                                listOfArticles[index].noOflikes.toString(),
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: context.screenHeight * 0.02),
+                                maxLines: 1,
+                              ),
+                            ),
+                          ],
+                        ).box.width((context.screenWidth - 45) * 0.19).make();
+                      },
+                    )),
+                    socialcontainers(
+                      icon('assets/images/Chat2.png',
+                          listOfArticles[index].noOfComments.toString()),
+                    ),
+                    socialcontainers(
+                      icon('assets/images/Diamondcare.png',
+                          listOfArticles[index].noOfViews.toString()),
+                    ),
+                    socialcontainers(icon(
+                        'assets/images/Sharefilled2.png', '000000000000000000'))
+                  ],
+                ),
+              ),
             ),
-
-
-          ],
-        )
-            .box
-            .width(listOfArticles[index].articlePhotoUrl !=
-            'WithoutImage'
-            ? (context.screenWidth-30 ) * 0.7
-            : (context.screenWidth -30) * 0.90).padding(EdgeInsets.symmetric(horizontal: 10))
-            .make();
-
+          )
+        ],
+      )
+          .box
+          .width((context.screenWidth - 45))
+          .padding(EdgeInsets.fromLTRB(5, 15, 10, 0))
+          .make();
     },
-
   );
-
-
 }
 
-Widget postimage (String articlePhotoUrl) {
-
+Widget socialcontainers(Widget a) {
   return Builder(
-      builder: (context) {
-        return
-
-          Image.network(
-              articlePhotoUrl,
-              //fit: BoxFit.fill
-              fit: BoxFit.cover)
-              .box
-              .height(context.screenHeight * 0.15)
-              .width((context.screenWidth-30) * 0.3)
-              .make();
-
-      }
+    builder: (BuildContext context) {
+      return Container(
+          // padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+          decoration: BoxDecoration(
+            color: Colors.grey,
+            borderRadius: BorderRadius.circular(15),
+            boxShadow: [
+              BoxShadow(
+                  color: Color.fromRGBO(0, 0, 0, 0.25),
+                  offset: Offset(0, 2),
+                  blurRadius: 2)
+            ],
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color.fromRGBO(243, 243, 243, 1.0),
+                  Color.fromRGBO(255, 255, 255, 1)
+                ]),
+          ),
+          height: (context.screenHeight * 0.19) * 0.25,
+          width: (context.screenWidth - 45) * 0.19,
+          child: a);
+    },
   );
+}
 
-
+Widget icon(String a, String b) {
+  return Builder(builder: (context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Image.asset(a, color: Color.fromRGBO(75, 74, 74, 1.0))
+            .box
+            .width((context.screenWidth - 40) * 0.05)
+            .make(),
+        Container(
+          width: ((context.screenWidth - 45) * 0.19) * 0.3,
+          child: Text(
+            b,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: context.screenHeight * 0.02),
+          ),
+        )
+      ],
+    );
+  });
 }
