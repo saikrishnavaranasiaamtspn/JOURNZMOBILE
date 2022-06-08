@@ -43,8 +43,25 @@ class _BodyCenterPaneSubtypeHeaderState
             return Container(
               // padding: EdgeInsets.only(left: context.screenWidth * 0.0225),
               padding: EdgeInsets.symmetric(horizontal: 5),
-
-              width: context.screenWidth ,
+              margin: EdgeInsets.fromLTRB(5, 0, 5, 15),
+              decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.25),
+                      offset: Offset(0, 4),
+                      blurRadius: 4)
+                ],
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color.fromRGBO(243, 243, 243, 1.0),
+                      Color.fromRGBO(255, 255, 255, 1)
+                    ]),
+              ),
+              width: context.screenWidth - 20,
               height: context.screenHeight * 0.13,
 
               child: ValueListenableBuilder<Box<HiveArticlesSubtypes>>(
