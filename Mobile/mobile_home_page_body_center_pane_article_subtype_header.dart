@@ -433,8 +433,8 @@ Widget headeritem(String selectedSubtype  , String a, String image){
       children: [
         Container(
 
-          //width: context.screenWidth * 0.1,
-          width: 40,
+          width: context.screenWidth * 0.15,
+         // width: 40,
 
           height: context.screenHeight * 0.085,
           decoration: BoxDecoration(
